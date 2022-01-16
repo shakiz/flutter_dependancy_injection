@@ -10,7 +10,7 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageViewState extends State<HomePage> {
-  late Meme visibleMeme;
+  Meme? visibleMeme;
 
   @override
   Widget build(BuildContext context) {
@@ -20,33 +20,33 @@ class _HomePageViewState extends State<HomePage> {
             ? Center(
           child: Card(
             child: Padding(
-              padding: EdgeInsets.all(8.0),
+              padding: const EdgeInsets.all(8.0),
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   Text(
-                    "Category ${visibleMeme.category}",
-                    style: TextStyle(fontSize: 36),
+                    "Category ${visibleMeme!.category}",
+                    style: const TextStyle(fontSize: 36),
                   ),
-                  SizedBox(height: 8),
+                  const SizedBox(height: 8),
                   Container(
-                    padding: EdgeInsets.all(8),
+                    padding: const EdgeInsets.all(8),
                     decoration: BoxDecoration(
                       border: Border.all(color: Colors.black),
                     ),
-                    child: Image.network(visibleMeme.imageUrl),
+                    child: Image.network(visibleMeme!.imageUrl),
                   ),
-                  SizedBox(height: 8),
-                  Text("Caption: ${visibleMeme.caption}"),
+                  const SizedBox(height: 8),
+                  Text("Caption: ${visibleMeme!.caption}"),
                 ],
               ),
             ),
           ),
         )
-            : Center(child: Text("No Meme loaded yet")),
+            : const Center(child: Text("No Meme loaded yet")),
       ),
       floatingActionButton: FloatingActionButton(
-        child: Icon(Icons.skip_next),
+        child: const Icon(Icons.skip_next),
         onPressed: () async {
           Meme meme = await getIt.get<MemeDomainController>().getNextMeme();
 
